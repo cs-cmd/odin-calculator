@@ -8,21 +8,33 @@
     </head>
 
     <body>
-        <div class="input-div">
-            <input class="num-input" id="num1-input" type="number" value="0">
-            <input class="num-input" id="num2-input" type="number" value="0">
+        <div class="calculator">
+            <div class="calc-screen-div">
+                <p class="calc-header"></p>
+                <p class="calc-screen"></p>
+            </div>
+
+            <div class="calc-keyboard">
+                <div class="calc-button" ro-type="number">1</div>
+                <div class="calc-button" ro-type="number">2</div>
+                <div class="calc-button" ro-type="number">3</div>
+                <div class="calc-button" ro-type="number">4</div>
+                <div class="calc-button" ro-type="number">5</div>
+                <div class="calc-button" ro-type="number">6</div>
+                <div class="calc-button" ro-type="number">7</div>
+                <div class="calc-button" ro-type="number">8</div>
+                <div class="calc-button" ro-type="number">9</div>
+                <div class="calc-button" ro-type="number">0</div>
+                <div class="calc-button" ro-type="equals">=</div>
+                <div class="calc-button" ro-type="clear">C</div>
+                <div class="calc-button" ro-type="operand">+</div>
+                <div class="calc-button" ro-type="operand">-</div>
+                <div class="calc-button" ro-type="operand">*</div>
+                <div class="calc-button" ro-type="operand">/</div>
+                <div class="calc-button" ro-type="decimal">.</div>
+            </div>
+            <p class="output" id="error-output"></p>
         </div>
-
-        <div class="selection-div">
-            <button class="function-button" id="add-button">Add</button>
-            <button class="function-button" id="subtract-button">Subtract</button>
-            <button class="function-button" id="multiply-button">Multiply</button>
-            <button class="function-button" id="divide-button">Divide</button>
-        </div>
-        <p class="output" id="result-output"></p>
-
-        <p class="output" id="error-output"></p>
-
         <script src="./src/page-model.js"></script>
     </body>
 </html>
