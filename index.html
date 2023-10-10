@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Odin Calculator</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="/src/calc-style.css">
+        <script src="./src/math-functions.js"></script>
+    </head>
+
+    <body>
+        <div class="input-div">
+            <input class="num-input" id="num1-input" type="number" value="0">
+            <input class="num-input" id="num2-input" type="number" value="0">
+        </div>
+
+        <div class="selection-div">
+            <button class="function-button" id="add-button">Add</button>
+            <button class="function-button" id="subtract-button">Subtract</button>
+            <button class="function-button" id="multiply-button">Multiply</button>
+            <button class="function-button" id="divide-button">Divide</button>
+        </div>
+        <p class="output" id="result-output"></p>
+
+        <p class="output" id="error-output"></p>
+
+        <script src="./src/page-model.js"></script>
+    </body>
+</html>

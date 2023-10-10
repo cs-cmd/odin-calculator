@@ -1,0 +1,19 @@
+html {
+    height: 100vh;
+}
+
+body {
+    background-color: antiquewhite;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.num-input {
+
+}
+
+.selection-div {
+    display: flex;
+}
