@@ -101,15 +101,14 @@ function handleOperandClick(value) {
         return;
     }
 
-    let num1 = parseFloat(screen.innerText);
+    let num = parseFloat(screen.innerText);
 
-    console.log(num1);
-    if (isNaN(num1)) {
+    if (isNaN(num)) {
         showError("Number is invalid...");
         return;
     }
 
-    vals[0] = num1;
+    vals[0] = num;
     vals[1] = value;
 
     let displayText = screen.innerText + ` ${value}`;
@@ -141,5 +140,6 @@ function clearCalcScreen() {
     screenHeader.innerText = '';
     screen.innerText = '';
     clearArray();
+    showError('');
 }
 initButtons();
