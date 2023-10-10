@@ -4,6 +4,11 @@ function clearArray() {
     vals[1] = null; 
     vals[2] = null;
 }
+function readyArray(result) {
+    clearArray();
+    vals[0] = result;
+}
+let justExecuted = false;
 
 let screen = document.getElementsByClassName('calc-screen')[0];
 let screenHeader = document.getElementsByClassName('calc-header')[0];
@@ -39,18 +44,21 @@ function operate(num1, operand, num2) {
         case "/":
             func = divide;
             break;
-        default:
-            showError("Error in computation...");
-            return;
     }
 
     let result = func(num1, num2);
 
     showResult(result);
+
+    return result;
 }
 
 function handleButtonClick(type, value) {
     switch (type) {
+        case "backspace":
+            let screenString = (screen.innerText).slice(0, screen.innerText.length-1);
+            screen.innerText = screenString;
+            return;
         case "decimal":
         case "number":
             handleNumberClick(value);
@@ -60,8 +68,9 @@ function handleButtonClick(type, value) {
             break;
         case "equals":
             handleEqualsClick(value);
-            operate(vals[0], vals[1], vals[2]);
-            clearArray();
+            let result = operate(vals[0], vals[1], vals[2]);
+            readyArray(result);
+            justExecuted = true;
             break;
         case "clear": 
             clearCalcScreen();
@@ -85,8 +94,16 @@ function handleNumberClick(value) {
 }
 
 function handleOperandClick(value) {
+    if (vals[1] !== null) {
+        let headerText = screenHeader.innerText;
+        screenHeader.innerText = headerText.substring(0, headerText.length - 1) + `${value}`;
+        vals[1] = value;
+        return;
+    }
+
     let num1 = parseFloat(screen.innerText);
 
+    console.log(num1);
     if (isNaN(num1)) {
         showError("Number is invalid...");
         return;
@@ -121,6 +138,8 @@ function showError(errMsg) {
 }
 
 function clearCalcScreen() {
+    screenHeader.innerText = '';
     screen.innerText = '';
+    clearArray();
 }
 initButtons();

@@ -5,22 +5,34 @@ html {
 body {
     margin: 0px;
     height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: blanchedalmond;
 }
 
 #error-output {
     color:crimson;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
 .calculator {
-    background-color: antiquewhite;
+    background-color:aqua;
+    padding: 25px;
+    border-radius: 5px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100%;
+    height: auto;
+    width: auto;
 }
 
 .calc-screen-div {
-    width: 210px;
+    width: 400px;
     height: 100px;
     background-color: silver;
     border-radius: 5px;
@@ -34,7 +46,7 @@ body {
 }
 
 .calc-screen {
-    width: 190px;
+    width: 250px;
     background-color:silver;
     border-radius: 5px;
     word-wrap: break-word;
@@ -44,19 +56,20 @@ body {
 .calc-keyboard {
     margin-top: 15px;
     display: flex;
+    justify-content: space-between;
     flex-wrap: wrap;
-    width: 210px;
-    gap: 15px;
+    width: 400px;
+    gap: 5px;
 }
 
 .calc-button {
-    width: 60px;
+    width: 95px;
     height: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    flex-grow: 0;
+    flex-grow: 1;
     flex-basis: auto;
     background-color:silver;
     border-radius: 5px;
