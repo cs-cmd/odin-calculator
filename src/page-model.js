@@ -1,13 +1,16 @@
-let vals = [ null, null, null ];
-function clearArray() {
-    vals[0] = null;
-    vals[1] = null; 
-    vals[2] = null;
+let num1 = null;
+let operand = null;
+let num2 = null;
+
+function clearVals() {
+    num1 = null;
+    num2 = null; 
+    operand = null;
 }
 
-function readyArray(result) {
-    clearArray();
-    vals[0] = result;
+function readyVal(result) {
+    clearVals();
+    num1 = result;
 }
 
 let screen = document.getElementsByClassName('calc-screen')[0];
@@ -26,10 +29,10 @@ function initButtons() {
     }
 }
 
-function operate(num1, operand, num2) {
-    let func;
+function operate(numOne, pOperand, numTwo) {
+    let func; // function to invoke
 
-    switch (operand) {
+    switch (pOperand) {
         case "+":
             func = add;
             break;
@@ -44,7 +47,7 @@ function operate(num1, operand, num2) {
             break;
     }
 
-    let result = func(num1, num2);
+    let result = func(numOne, numTwo);
 
     showResult(result);
 
@@ -67,8 +70,8 @@ function handleButtonClick(type, value) {
             break;
         case "equals":
             handleEqualsClick();
-            let result = operate(vals[0], vals[1], vals[2]);
-            readyArray(result);
+            let result = operate(num1, operand, num2);
+            readyVal(result);
             break;
         case "clear": 
             clearCalcScreen();
@@ -92,10 +95,10 @@ function handleNumberClick(value) {
 }
 
 function handleOperandClick(value) {
-    if (vals[1] !== null) {
+    if (operand !== null) {
         let headerText = screenHeader.innerText;
         screenHeader.innerText = headerText.substring(0, headerText.length - 1) + `${value}`;
-        vals[1] = value;
+        operand = value;
         return;
     }
 
@@ -106,23 +109,23 @@ function handleOperandClick(value) {
         return;
     }
 
-    vals[0] = num;
-    vals[1] = value;
+    num1 = num;
+    operand = value;
 
-    let displayText = screen.innerText + ` ${value}`;
+    let displayText = num + ` ${value}`;
     screenHeader.innerText = displayText;
 
     screen.innerText = '';
 }
 
 function handleEqualsClick() {
-    num2 = parseFloat(screen.innerText);
+    num = parseFloat(screen.innerText);
 
-    if(isNaN(num2)) {
+    if(isNaN(num)) {
         showError("Number is invalid...");
     }
 
-    vals[2] = num2;
+    num2 = num;
 }
 
 function showResult(result) {
@@ -137,7 +140,7 @@ function showError(errMsg) {
 function clearCalcScreen() {
     screenHeader.innerText = '';
     screen.innerText = '';
-    clearArray();
+    clearVals();
 }
 
 function hasDecimal() {
