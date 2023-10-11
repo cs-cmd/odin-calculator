@@ -9,7 +9,7 @@ body {
     align-items: center;
     justify-content: center;
     background-color: #1d407d;
-    font: "Courier New", "Times New Roman", monospace;
+    font-family: "Courier New", "Times New Roman", monospace;
 }
 
 .calculator {
