@@ -1,16 +1,13 @@
+// numbers and operand used for calculation
 let num1 = null;
 let operand = null;
 let num2 = null;
 
+// clears values to default (null)
 function clearVals() {
     num1 = null;
     num2 = null; 
     operand = null;
-}
-
-function readyVal(result) {
-    clearVals();
-    num1 = result;
 }
 
 let screen = document.getElementsByClassName('calc-screen')[0];
@@ -47,11 +44,7 @@ function operate(numOne, pOperand, numTwo) {
             break;
     }
 
-    let result = func(numOne, numTwo);
-
-    showResult(result);
-
-    return result;
+    return func(numOne, numTwo);
 }
 
 function handleButtonClick(type, value) {
@@ -71,7 +64,8 @@ function handleButtonClick(type, value) {
         case "equals":
             handleEqualsClick();
             let result = operate(num1, operand, num2);
-            readyVal(result);
+            showResult(result);
+            clearVals();
             break;
         case "clear": 
             clearCalcScreen();
