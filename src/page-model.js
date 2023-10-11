@@ -4,11 +4,11 @@ function clearArray() {
     vals[1] = null; 
     vals[2] = null;
 }
+
 function readyArray(result) {
     clearArray();
     vals[0] = result;
 }
-let justExecuted = false;
 
 let screen = document.getElementsByClassName('calc-screen')[0];
 let screenHeader = document.getElementsByClassName('calc-header')[0];
@@ -21,8 +21,6 @@ function initButtons() {
             let value = e.target.innerText;
             let type = e.target.getAttribute("ro-type");
 
-            console.log(value);
-            console.log(type);
             handleButtonClick(type, value);
         })
     }
@@ -60,6 +58,7 @@ function handleButtonClick(type, value) {
             screen.innerText = screenString;
             return;
         case "decimal":
+            if (hasDecimal()) { return; }
         case "number":
             handleNumberClick(value);
             break;
@@ -67,10 +66,9 @@ function handleButtonClick(type, value) {
             handleOperandClick(value);
             break;
         case "equals":
-            handleEqualsClick(value);
+            handleEqualsClick();
             let result = operate(vals[0], vals[1], vals[2]);
             readyArray(result);
-            justExecuted = true;
             break;
         case "clear": 
             clearCalcScreen();
@@ -84,7 +82,7 @@ function handleButtonClick(type, value) {
 function handleNumberClick(value) {
     let text = screen.innerText;
 
-    if (text.length >= 54) {
+    if (text.length >= 111) {
         showError("Number too long...");
         return;
 
@@ -117,7 +115,7 @@ function handleOperandClick(value) {
     screen.innerText = '';
 }
 
-function handleEqualsClick(value) {
+function handleEqualsClick() {
     num2 = parseFloat(screen.innerText);
 
     if(isNaN(num2)) {
@@ -131,15 +129,21 @@ function showResult(result) {
     screenHeader.innerText = '';
     screen.innerText = result;
 }
+
 function showError(errMsg) {
-    let errTag = document.getElementById("error-output");
-    errTag.innerText = errMsg;
+    console.log(`ERROR: ${errMsg}`);
 }
 
 function clearCalcScreen() {
     screenHeader.innerText = '';
     screen.innerText = '';
     clearArray();
-    showError('');
+}
+
+function hasDecimal() {
+    // test inner text of screen to determine if it contains a 
+    // decimal
+    // regex.test(str);
+    return /[.]/.test(screen.innerText);
 }
 initButtons();
